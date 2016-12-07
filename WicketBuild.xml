@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="war" name="PocketAssistApplication" basedir=".">
+	<property name="final.name" value="PocketAssistApplication"/>
+	<!--<property name="src.main.dir" value="src/main/java"/>-->
+	<property name="src.main.dir" value="source"></property>
+ 	<property name="src.test.dir" value="src/test/java"/>
+ 	<!--<property name="src.web.dir" value="src/main/webapp"/>-->
+ 	<property name="src.web.dir" value="webapp"></property>
+	<property name="lib.dir" value="lib"/>
+ 	<property name="build.dir" value="WebContent"/>
+ 	<property name="build.main.classes" value="${build.dir}/classes"/>
+	<property name="tomee.webapp.dir" value="../../../TomeeServer/apache-tomee-webprofile-1.7.4/webapps/"/>
+ 
+ 	<path id="build.classpath">
+ 		<fileset dir="${lib.dir}">
+ 			<include name="**/*.jar"/>
+ 		</fileset>
+ 	</path>
+ 	
+ 	 <target name="clean">
+ 		<delete dir="${build.dir}" failonerror="false"/>
+ 		<delete file="${final.name}.war" failonerror="false"/>
+ 	 	<delete dir="${tomee.webapp.dir}/${final.name}"/>
+ 	 	<delete file="${tomee.webapp.dir}/${final.name}.war"/>
+ 	</target>
+ 
+ 	<target name="init">
+ 		<mkdir dir="${build.dir}"/>
+ 	</target>
+ 
+ 	<target name="compile" depends="clean,init">
+ 		<mkdir dir="${build.main.classes}"/>
+ 		<javac destdir="${build.main.classes}" target="1.8" source="1.8"
+ 				srcdir="${src.main.dir}" classpathref="build.classpath"/>
+ 		<copy todir="${build.main.classes}">
+ 		 			<fileset dir="${src.main.dir}">
+ 		 				<include name="**/*.*"/>
+ 		 				<exclude name="**/*.java"/>
+ 		 			</fileset>
+ 		</copy>
+ 	</target>
+ 	
+	<target name="copy_resources">
+<!--
+		<jar destfile="${build.dir}/resources.jar"
+		       basedir="resources"
+		  />
+-->
+		<copy todir="${build.dir}">
+			<fileset dir="${basedir}">
+				<include name="resources/**"/>
+			</fileset>
+		</copy>
+	</target>
+	
+ 	<target name="war" depends="copy_resources,compile">
+ 		<!--<war destfile=  "${build.dir}/${final.name}.war"-->
+ 		<war destfile="${tomee.webapp.dir}/${final.name}.war"
+ 				webxml="${src.web.dir}/WEB-INF/web.xml">
+ 			<lib dir="lib">
+ 				<include name="commons*.jar"/>
+ 				<include name="wicket*.jar"/>
+ 				<include name="slf4j*.jar"/>
+ 				<include name="log4j*.jar"/>
+ 			</lib>
+ 			<classes dir="${build.main.classes}"/>
+ 			
+ 			<fileset dir="${basedir}">
+ 				<include name="resources/**"/>
+ 			</fileset>
+ 			
+ 			<fileset dir="${src.web.dir}">
+ 				<include name="**/*"/>
+ 				<exclude name="**/web.xml"/>
+ 			</fileset>
+ 			
+ 		</war>
+ 	</target> 
+</project>
