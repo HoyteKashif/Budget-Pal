@@ -44,10 +44,12 @@ class BillCombinationHelper
 		lstAllCombinations.clear();
 		 
 		List<BillModel> lstTempData = new ArrayList<>();
-		for(int iComboSize = 1; iComboSize <= StaticMonthlyBillsHelper.getBillModelList().size() ; iComboSize++)
-		{
-			combinationUtil(StaticMonthlyBillsHelper.getBillModelList(), lstTempData, 0, StaticMonthlyBillsHelper.getBillModelList().size() - 1, 0, iComboSize);
-		}
+		
+		//TODO: this function should take in a list of BillModels and create a combination based on those objects
+//		for(int iComboSize = 1; iComboSize <= StaticMonthlyBillsHelper.getBillModelList().size() ; iComboSize++)
+//		{
+//			 combinationUtil(StaticMonthlyBillsHelper.getBillModelList(), lstTempData, 0, StaticMonthlyBillsHelper.getBillModelList().size() - 1, 0, iComboSize);
+//		}
 		return lstAllCombinations;
 	}
 	 
