@@ -1,6 +1,6 @@
 .daterangepicker .ranges li {
   color: #73879C; }
-  .daterangepicker .ranges li.active, .daterangepicker .ranges li:hover {
+.daterangepicker .ranges li.active, .daterangepicker .ranges li:hover {
     background: #536A7F;
     border: 1px solid #536A7F;
     color: #fff; }

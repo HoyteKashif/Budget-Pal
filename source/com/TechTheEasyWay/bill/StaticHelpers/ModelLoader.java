@@ -1,34 +1,49 @@
 package com.TechTheEasyWay.bill.StaticHelpers;
 
-import com.TechTheEasyWay.bill.data.model.BillModel;
-import com.TechTheEasyWay.bill.data.model.LedgerEntryModel;
+import java.math.BigDecimal;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.TechTheEasyWay.bill.data.model.BillModel;
+import com.TechTheEasyWay.bill.data.model.LedgerEntryModel;
+
 public class ModelLoader {
 
-	public static void loadLedgerModel(final ResultSet p_rsDataDB){
+	public static LedgerEntryModel loadLedgerModel(final ResultSet p_rsDataDB){
 		try {
-			LedgerEntryModel oEntryModel = new LedgerEntryModel();
-			oEntryModel.setStrBillName(p_rsDataDB.getString(1));
-			oEntryModel.setlAmountDue(p_rsDataDB.getBigDecimal(2));
-			oEntryModel.setlMinimumPayment(p_rsDataDB.getBigDecimal(3));
-			oEntryModel.setDtDuedate(p_rsDataDB.getDate(4));
-			oEntryModel.setDtDatePaid(p_rsDataDB.getDate(5));
-			return;
+			return loadLedgerEntryModel(p_rsDataDB.getString(1),p_rsDataDB.getBigDecimal(2),p_rsDataDB.getBigDecimal(3),p_rsDataDB.getDate(4),p_rsDataDB.getDate(5));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 	
-	public static void loadBillModel(final ResultSet p_rsDataDB){
+	public static LedgerEntryModel loadLedgerEntryModel(final String p_strName, final BigDecimal p_lAmountDue, final BigDecimal p_lMinimumPayment, final Date p_dtDueDate, final Date p_dtDatePaid){
+		LedgerEntryModel oEntryModel = new LedgerEntryModel();
+		oEntryModel.setStrBillName(p_strName);
+		oEntryModel.setlAmountDue(p_lAmountDue);
+		oEntryModel.setlMinimumPayment(p_lMinimumPayment);
+		oEntryModel.setDtDuedate(p_dtDueDate);
+		oEntryModel.setDtDatePaid(p_dtDatePaid);
+		return oEntryModel;
+	}
+	
+	public static BillModel loadBillModel(final ResultSet p_rsDataDB){
 		try {
-			BillModel oBillModel = new BillModel();
-			oBillModel.setName(p_rsDataDB.getString(2));
-			oBillModel.setAmount(p_rsDataDB.getBigDecimal(4));
-			oBillModel.setDueDate(p_rsDataDB.getInt(3));
+			return loadBillModel(p_rsDataDB.getString(2), p_rsDataDB.getBigDecimal(4), p_rsDataDB.getInt(3));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return null;
+	}
+	
+	public static BillModel loadBillModel(final String p_strName, final BigDecimal p_lAmount, final int p_iDayDue)
+	{
+		BillModel oBillModel = new BillModel();
+		oBillModel.setName(p_strName);
+		oBillModel.setAmount(p_lAmount);
+		oBillModel.setDueDate(p_iDayDue);		
+		return oBillModel;
 	}
 }

@@ -7,13 +7,6 @@ import java.sql.SQLException;
 
 public class StaticDBHelper {
 	
-	static{
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
 	
 	public enum BillApplicationDB{ 
 		USER("bill_application_user"),
@@ -31,8 +24,15 @@ public class StaticDBHelper {
 	    
 	    public static Connection getConnection(){
 	    	try {
+	    		Class.forName("com.mysql.jdbc.Driver").newInstance();
 				return DriverManager.getConnection(URL.getValue(), USER.getValue(), PASSWORD.getValue());
 			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (InstantiationException e) {
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			}
 			return null;

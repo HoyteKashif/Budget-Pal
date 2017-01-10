@@ -29,9 +29,11 @@ public class LedgerDB {
 	private static ResultSet oResultSet;
 	
 	public LedgerDB(){
-		
 	}
 
+	public static void insert(final LedgerEntryModel p_oLedgerEntryModel){
+		
+	}
 	public static void insert(final int p_iBillId, final BigDecimal p_lAmountDue, final BigDecimal p_lMinimumPayment, final java.sql.Date p_dtDueDate, final java.sql.Date p_dtDatePaid){
 
 		try(Connection oConnection = BillApplicationDB.getConnection()){
@@ -71,12 +73,13 @@ public class LedgerDB {
 				oEntryModel.setDtDuedate(oResultSet.getDate(4));
 				oEntryModel.setDtDatePaid(oResultSet.getDate(5));
 				lstLedgerEntries.add(oEntryModel);
-				oResultSet.close();
 			}
+			oResultSet.close();
 			return lstLedgerEntries;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		System.out.println("returning nothing");
 		return null;
 	}
 	
