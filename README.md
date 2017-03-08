@@ -8,4 +8,6 @@ Java based budget application with a web-based component, MySql database with Wi
 -- currently working to do more research into personal financing as well as studying other applications to see where I can 
 borrow from and possible improve upon.
 
+-- additional possibilities for sharing of data is to use a webservice. This might be a really cool way of sending and receiving updates to the information stored in the database.
+
 Target release for the 1st version is December 1, 2017.
