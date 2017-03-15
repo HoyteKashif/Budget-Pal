@@ -9,6 +9,7 @@ public class ViewLedgerInfoPage extends BasePage{
 
 	public ViewLedgerInfoPage()
 	{
+		super();
 		add( new LedgerInfoPanel("pnlLedgerInfo"));
 	}
 }

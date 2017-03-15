@@ -14,6 +14,24 @@ import com.TechTheEasyWay.bill.data.model.BillModel;
 
 public class BillDB {
 
+	private static ResultSet oResultSet;
+	
+	public enum BillColumnEnum{
+		BILL_NAME("bill_name"),
+		DAY_DUE("day_due"),
+		AMOUNT("amount"),
+		BALANCE("balance");
+		
+		private String strName;
+		private BillColumnEnum( final String p_strName){
+			strName = p_strName;
+		}
+		public String getName(){
+			return strName;
+		}
+		
+	}
+	
 	/**
 	 * Default Constructor
 	 */
@@ -52,9 +70,10 @@ public class BillDB {
 	{
 		try(Connection con = BillApplicationDB.getConnection()) {
 			List<String> lstBillNames = new ArrayList<>();
+			
 			ResultSet oResults = con.createStatement().executeQuery("select distinct bill.bill_name from bill");
 			while(oResults.next()){
-				lstBillNames.add(oResults.getString("bill_name"));
+				lstBillNames.add(oResults.getString(BillColumnEnum.BILL_NAME.getName()));
 			}
 			return lstBillNames;
 		} catch (SQLException e) {
@@ -69,16 +88,27 @@ public class BillDB {
 			List<BillModel> lstModels = new ArrayList<>();
 			for(ResultSet rs = getAll(); rs.next(); )
 			{
-				//TODO: load results into bill models
-				ModelLoader.loadBillModel(rs);
+				lstModels.add(ModelLoader.loadBillModel(rs));
 			}
+			return lstModels;
 			
-			//TODO: return list of loaded models
-//			return Collections.EMPTY_LIST;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return Collections.emptyList();
+	}
+	
+	public static String getBillNameById(final int p_iBillId)
+	{
+		try (Connection con = BillApplicationDB.getConnection()){
+			java.sql.PreparedStatement oStatement = con.prepareStatement("SELECT bill_name FROM bill WHERE bill.bill_id = ?");
+			oStatement.setInt(1, p_iBillId);
+			oResultSet = oStatement.executeQuery();
+			return oResultSet.getString(BillColumnEnum.BILL_NAME.getName());
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 }

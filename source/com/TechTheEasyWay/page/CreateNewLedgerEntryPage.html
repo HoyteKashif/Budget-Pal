@@ -14,7 +14,7 @@
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Bill
                         </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12"><select class="form-control col-md-7 col-xs-12" wicket:id="lstBillOptions">
+                        <div class="col-md-6 col-sm-6 col-xs-12"><select class="form-control col-md-7 col-xs-12" wicket:id="strBillName">
                          
                         </select>
                        </div>
@@ -24,7 +24,15 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Amount Due<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" class="form-control col-md-7 col-xs-12" wicket:id="txtAmountDue"/>
+                          <input type="text" class="form-control col-md-7 col-xs-12" wicket:id="lAmountDue"/>
+                        </div>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Minimum Payment<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" class="form-control col-md-7 col-xs-12" wicket:id="lMinimumPayment"/>
                         </div>
                       </div>
                       
@@ -32,7 +40,7 @@
                           <div class="form-group">
                           	<label class="control-label col-md-3 col-sm-3 col-xs-12">Due Date</label>
                             <div class="col-md-6 col-sm-6 col-xs-12" >
-                                <input wicket:id="dtDueDateField" type="text" class="form-control has-feedback-left"/>
+                                <input wicket:id="dtDueDate" type="text" class="form-control has-feedback-left"/>
                             </div>
                           </div>
                       </fieldset>
@@ -41,7 +49,7 @@
                           <div class="form-group">
                           	<label class="control-label col-md-3 col-sm-3 col-xs-12">Date Paid</label>
                             <div class="col-md-6 col-sm-6 col-xs-12" >
-                                <input wicket:id="dtDatePaidField" type="text" class="form-control has-feedback-left"/>
+                                <input wicket:id="dtDatePaid" type="text" class="form-control has-feedback-left"/>
                             </div>
                           </div>
                       </fieldset>

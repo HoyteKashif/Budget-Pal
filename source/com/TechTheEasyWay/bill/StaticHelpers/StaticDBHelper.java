@@ -24,13 +24,10 @@ public class StaticDBHelper {
 	    
 	    public static Connection getConnection(){
 	    	try {
-	    		Class.forName("com.mysql.jdbc.Driver").newInstance();
+	    		Class.forName("com.mysql.jdbc.Driver");
+	 
 				return DriverManager.getConnection(URL.getValue(), USER.getValue(), PASSWORD.getValue());
 			} catch (SQLException e) {
-				e.printStackTrace();
-			} catch (InstantiationException e) {
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
 				e.printStackTrace();
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();

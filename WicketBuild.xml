@@ -9,7 +9,7 @@
 	<property name="lib.dir" value="lib"/>
  	<property name="build.dir" value="WebContent"/>
  	<property name="build.main.classes" value="${build.dir}/classes"/>
-	<property name="tomee.webapp.dir" value="../../../TomeeServer/apache-tomee-webprofile-1.7.4/webapps/"/>
+	<property name="tomee.webapp.dir" value="../../../TomeeServer/apache-tomee-plus-7.0.2/webapps/"/>
  
  	<path id="build.classpath">
  		<fileset dir="${lib.dir}">
@@ -30,7 +30,7 @@
  
  	<target name="compile" depends="clean,init">
  		<mkdir dir="${build.main.classes}"/>
- 		<javac destdir="${build.main.classes}" target="1.8" source="1.8"
+ 		<javac destdir="${build.main.classes}" target="1.8" debug="on" source="1.8"
  				srcdir="${src.main.dir}" classpathref="build.classpath"/>
  		<copy todir="${build.main.classes}">
  		 			<fileset dir="${src.main.dir}">
@@ -62,6 +62,7 @@
  				<include name="wicket*.jar"/>
  				<include name="slf4j*.jar"/>
  				<include name="log4j*.jar"/>
+ 				<include name="mysql*.jar"/>
  			</lib>
  			<classes dir="${build.main.classes}"/>
  			

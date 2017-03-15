@@ -15,7 +15,7 @@ public class LedgerEntryModel implements IClusterable
 	private String strBillName;
 	private BigDecimal lAmountDue;
 	private BigDecimal lMinimumPayment;
-	private Date dtDuedate;
+	private Date dtDueDate;
 	private Date dtDatePaid;
 	
 	/**
@@ -77,28 +77,28 @@ public class LedgerEntryModel implements IClusterable
 	/**
 	 * @return the dtDuedate
 	 */
-	public Date getDtDuedate() {
-		return dtDuedate;
+	public Date getDueDate() {
+		return dtDueDate;
 	}
 
 	/**
 	 * @param dtDuedate the dtDuedate to set
 	 */
-	public void setDtDuedate(Date dtDuedate) {
-		this.dtDuedate = dtDuedate;
+	public void setDueDate(Date dtDueDate) {
+		this.dtDueDate = dtDueDate;
 	}
 
 	/**
 	 * @return the dtDatePaid
 	 */
-	public Date getDtDatePaid() {
+	public Date getDatePaid() {
 		return dtDatePaid;
 	}
 
 	/**
 	 * @param dtDatePaid the dtDatePaid to set
 	 */
-	public void setDtDatePaid(Date dtDatePaid) {
+	public void setDatePaid(Date dtDatePaid) {
 		this.dtDatePaid = dtDatePaid;
 	}
 

@@ -1,7 +1,5 @@
 package com.TechTheEasyWay.page.components;
 
-import java.util.HashMap;
-
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
@@ -18,10 +16,10 @@ public class LedgerInfoPanel extends Panel
 	/**SerialUID*/
 	private static final long serialVersionUID = 5706377213661434524L;
 
-	public LedgerInfoPanel(String p_strId) {
-		super(p_strId);
+	public LedgerInfoPanel( final String p_strId) {
 		
-		Form<Void> oFormLedgerTable  = new Form<>("formLedgerTable");
+		super(p_strId);
+		final Form<Void> oFormLedgerTable  = new Form<Void>("formLedgerTable");
 		add( oFormLedgerTable);
 		
 		oFormLedgerTable.add (new Button("btnAddEntry")
@@ -46,8 +44,8 @@ public class LedgerInfoPanel extends Panel
 				LedgerEntryModel oEntryModel = p_oItem.getModelObject();
 				p_oItem.add(new Label("strBillName", oEntryModel.getStrBillName()));
 				p_oItem.add(new Label("strAmountDue", "$" + ((oEntryModel.getlAmountDue() != null) ? oEntryModel.getlAmountDue() : "0")));
-				p_oItem.add(new Label("strDueDate", oEntryModel.getDtDuedate()));
-				p_oItem.add(new Label("strDatePaid", (oEntryModel.getDtDatePaid() != null) ? oEntryModel.getDtDatePaid() : "Not Paid Yet"));
+				p_oItem.add(new Label("strDueDate", oEntryModel.getDueDate()));
+				p_oItem.add(new Label("strDatePaid", (oEntryModel.getDatePaid() != null) ? oEntryModel.getDatePaid() : "Not Paid Yet"));
 				p_oItem.add(removeLink("lnkDelete", p_oItem));
 			}
 		});

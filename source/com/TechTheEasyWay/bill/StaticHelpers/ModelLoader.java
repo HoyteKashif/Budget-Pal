@@ -12,7 +12,7 @@ public class ModelLoader {
 
 	public static LedgerEntryModel loadLedgerModel(final ResultSet p_rsDataDB){
 		try {
-			return loadLedgerEntryModel(p_rsDataDB.getString(1),p_rsDataDB.getBigDecimal(2),p_rsDataDB.getBigDecimal(3),p_rsDataDB.getDate(4),p_rsDataDB.getDate(5));
+			return loadLedgerEntryModel( p_rsDataDB.getString(1),p_rsDataDB.getBigDecimal(2),p_rsDataDB.getBigDecimal(3),p_rsDataDB.getDate(4),p_rsDataDB.getDate(5));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -24,8 +24,8 @@ public class ModelLoader {
 		oEntryModel.setStrBillName(p_strName);
 		oEntryModel.setlAmountDue(p_lAmountDue);
 		oEntryModel.setlMinimumPayment(p_lMinimumPayment);
-		oEntryModel.setDtDuedate(p_dtDueDate);
-		oEntryModel.setDtDatePaid(p_dtDatePaid);
+		oEntryModel.setDueDate(p_dtDueDate);
+		oEntryModel.setDatePaid(p_dtDatePaid);
 		return oEntryModel;
 	}
 	
