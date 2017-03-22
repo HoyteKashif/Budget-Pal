@@ -30,7 +30,7 @@
  
  	<target name="compile" depends="clean,init">
  		<mkdir dir="${build.main.classes}"/>
- 		<javac destdir="${build.main.classes}" target="1.8" debug="on" source="1.8"
+ 		<javac destdir="${build.main.classes}" target="1.8" debug="true" debuglevel="lines,vars,source" source="1.8"
  				srcdir="${src.main.dir}" classpathref="build.classpath"/>
  		<copy todir="${build.main.classes}">
  		 			<fileset dir="${src.main.dir}">

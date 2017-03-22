@@ -11,6 +11,7 @@ import org.apache.wicket.markup.html.form.validation.IFormValidator;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.util.string.Strings;
 
 import com.TechTheEasyWay.bill.DB.BillDB;
 import com.TechTheEasyWay.bill.data.model.LedgerEntryModel;
@@ -75,7 +76,9 @@ public class CreateNewLedgerEntryPage extends BasePage
 			@Override
 			public void validate(Form<?> form) {
 				String strBillSelector = ddcBillSelector.getRawInput();
-				if (Objects.isNull(strBillSelector)){
+				System.out.println("test output: " + Strings.isEmpty(strBillSelector));
+				if (Strings.isEmpty(strBillSelector)){
+					
 					form.error("User must select a Bill");
 				}
 				// checks: 

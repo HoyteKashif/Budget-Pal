@@ -29,7 +29,6 @@ public class BillDB {
 		public String getName(){
 			return strName;
 		}
-		
 	}
 	
 	/**
@@ -98,7 +97,7 @@ public class BillDB {
 		return Collections.emptyList();
 	}
 	
-	public static String getBillNameById(final int p_iBillId)
+	public static String getBillNameById( final int p_iBillId)
 	{
 		try (Connection con = BillApplicationDB.getConnection()){
 			java.sql.PreparedStatement oStatement = con.prepareStatement("SELECT bill_name FROM bill WHERE bill.bill_id = ?");
