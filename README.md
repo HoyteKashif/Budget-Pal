@@ -11,3 +11,7 @@ borrow from and possible improve upon.
 -- additional possibilities for sharing of data is to use a webservice. This might be a really cool way of sending and receiving updates to the information stored in the database.
 
 Target release for the 1st version is December 1, 2017.
+
+Changes In-progress: 
+- Use Hibernate for JAVA database connectivity.
+- Remove all 3rd party css and javascript from the application.
