@@ -1,0 +1,27 @@
+ERROR 1820 (HY000): You must reset your password using ALTER USER statement before executing this statement.
+Fix:
+set password = password(‘new_password’);
+actual command used: set password = password('Engineer10466');
+
+
+Error::11/8/2016
+-the table is too big and I cannot see what data is on the same row as the row breaks
+Fix:: pager less -SFX
+
+Error::11/8/2016
+java.lang.ClassNotFoundException: org.apache.commons.fileupload.FileUploadException
+Fix::
+added the following jars to the lib folder in the "wicketApplication/lib"
+
+http://commons.apache.org/proper/commons-io/
+http://commons.apache.org/proper/commons-fileupload/
+
+lib jars after addition:
+commons-fileupload-1.3.2.jar
+commons-io-2.5.jar
+wicket-core-7.4.0.jar
+wicket-devutils-7.4.0.jar
+wicket-extensions-7.4.0.jar
+wicket-ioc-7.4.0.jar
+wicket-request-7.4.0.jar
+wicket-util-7.4.0.jar

@@ -1,0 +1,29 @@
+-------------------------
+--------  MySQL ---------
+-------------------------
+installed MySql version 5.7.15
+Home: /usr/local/mysql-5.7.15-osx10.11-x86_64
+
+
+-------------------------------
+---- Oracle Sql Developer -----
+-------------------------------
+installed Oracle Sql Developer
+setup SqlDeveloper::
+-add third party driver for the mySql database
+-add connection to 'bill_application' database
+
+Instructions to add third party (MySQL) driver:
+1. open oracle sql developer
+2. select 'Database' menu option
+3. select 'Third Party JDBC Drivers'
+4. add entry (navigate to mysql-connector-java-5.1.40.jar)
+
+
+Add connection:
+1. set Connection Name = bill_application
+2. set Username = bill_application_user
+3. set Password = p@ssword01
+4. click Mysql tab
+5. set Hostname = localhost
+6. set Port = 3306
