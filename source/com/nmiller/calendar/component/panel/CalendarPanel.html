@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" 
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://wicket.apache.org http://svn.apache.org/repos/asf/wicket/releases/wicket-1.5.3/wicket-core/src/main/resources/META-INF/wicket-1.5.xsd">
+<head>
+</head>
+<body>
+  <wicket:panel>
+    <form wicket:id="frmCalendar">
+    
+      <h1 class="align-center padtop-medium">
+        <span class="padright-medium"><input type="submit" value="&lt;" wicket:id="btnPrevious" /></span>
+        <wicket:container wicket:id="eMonth" />
+        <wicket:container wicket:id="iYear" />
+        <span class="padleft-medium"><input type="submit" value="&gt;" wicket:id="btnNext" /></span>
+      </h1>
+
+      <div class="month">
+        <div class="flex-container">
+          <div class="day">Sunday</div>
+          <div class="day">Monday</div>
+          <div class="day">Tuesday</div>
+          <div class="day">Wednesday</div>
+          <div class="day">Thursday</div>
+          <div class="day">Friday</div>
+          <div class="day">Saturday</div>
+        </div>
+        <div class="flex-container week" wicket:id="lstWeek">
+          
+          <div class="day" wicket:id="lstDay">
+            <wicket:container wicket:id="DayPanel"/>
+          </div>
+     
+        </div>
+      </div>
+    </form>
+    
+
+  </wicket:panel>
+</body>
+</html>
