@@ -24,34 +24,34 @@ import com.TechTheEasyWay.bill.data.model.LedgerEntryModel;
  */
 public final class LedgerDB {
 
-	public enum LedgerColumnEnum {
-		LEDGER_ENTRY_ID("ledger_id"), BILL_ID("bill_id"), AMOUNT_DUE("amount_due"), MINIMUM_PAYMENT(
-				"minimum_payment"), DUE_DATE("due_date"), DATE_PAID("date_paid");
-
-		private final String strColumnName;
-
-		private LedgerColumnEnum(final String p_strColumnName) {
-			this.strColumnName = p_strColumnName;
-		}
-
-		public String getColumnName() {
-			return strColumnName;
-		}
-	}
-
 	private static ResultSet oResultSet;
 	private static PreparedStatement oPreparedStatement;
 	private static Statement oStatement;
 
+	public enum LedgerColumn {
+		LEDGER_ENTRY_ID("ledger_id"), BILL_ID("bill_id"), AMOUNT_DUE("amount_due"), MINIMUM_PAYMENT(
+				"minimum_payment"), DUE_DATE("due_date"), DATE_PAID("date_paid");
+
+		private final String name;
+
+		private LedgerColumn(final String p_strName) {
+			this.name = p_strName;
+		}
+
+		public String getName() {
+			return name;
+		}
+	}
+
 	private LedgerDB() {
 	}
 
-	public static void delete(final LedgerEntryModel p_oLedgerEntryModel) {
-		Objects.requireNonNull(p_oLedgerEntryModel);
+	public static void delete(final LedgerEntryModel p_oLedgerEntry) {
+		Objects.requireNonNull(p_oLedgerEntry);
 
 		try (Connection oConnection = BillApplicationDB.getConnection()) {
 			final PreparedStatement statement = oConnection.prepareStatement("delete from ledger where ledger_id = ?");
-			statement.setInt(1, p_oLedgerEntryModel.getLedgerEntryId());
+			statement.setInt(1, p_oLedgerEntry.getId());
 			statement.execute();
 		} catch (final SQLException e) {
 			e.printStackTrace();
@@ -60,13 +60,12 @@ public final class LedgerDB {
 		}
 	}
 
-	public static void insert(final LedgerEntryModel p_oLedgerEntryModel) {
-		Objects.requireNonNull(p_oLedgerEntryModel);
-		Objects.requireNonNull(p_oLedgerEntryModel.getBillModel());
+	public static void insert(final LedgerEntryModel p_oLedgerEntry) {
+		Objects.requireNonNull(p_oLedgerEntry);
+		Objects.requireNonNull(p_oLedgerEntry.getBill());
 
-		insert(p_oLedgerEntryModel.getBillModel().getBillId(), p_oLedgerEntryModel.getAmountDue(),
-				p_oLedgerEntryModel.getMinimumPayment(), p_oLedgerEntryModel.getDueDate(),
-				p_oLedgerEntryModel.getDatePaid());
+		insert(p_oLedgerEntry.getBill().getId(), p_oLedgerEntry.getAmountDue(), p_oLedgerEntry.getMinimumPayment(),
+				p_oLedgerEntry.getDueDate(), p_oLedgerEntry.getDatePaid());
 	}
 
 	public static void insert(final int p_iBillId, final BigDecimal p_lAmountDue, final BigDecimal p_lMinimumPayment,
@@ -99,23 +98,21 @@ public final class LedgerDB {
 
 			oResultSet = stmt.executeQuery(strQuery);
 
-			final List<LedgerEntryModel> lstLedgerEntries = new ArrayList<>();
+			final List<LedgerEntryModel> ledgerEntries = new ArrayList<>();
 
 			while (oResultSet.next()) {
-				final LedgerEntryModel oEntryModel = new LedgerEntryModel();
-				oEntryModel.setLedgerEntryId(getLedgerEntryId());
-				oEntryModel.setAmountDue(getAmountDue());
-				oEntryModel.setMinimumPayment(getMinimumPayment());
-				oEntryModel.setDueDate(getDueDate());
-				oEntryModel.setDatePaid(getDatePaid());
-				oEntryModel.setBillModel(BillDB.getBillModelById(getBillId()));
+				final LedgerEntryModel oLedgerEntry = new LedgerEntryModel();
+				oLedgerEntry.setLedgerEntryId(getLedgerEntryId());
+				oLedgerEntry.setAmountDue(getAmountDue());
+				oLedgerEntry.setMinimumPayment(getMinimumPayment());
+				oLedgerEntry.setDueDate(getDueDate());
+				oLedgerEntry.setDatePaid(getDatePaid());
+				oLedgerEntry.setBillModel(BillDB.getBillModelById(getBillId()));
 
-				lstLedgerEntries.add(oEntryModel);
+				ledgerEntries.add(oLedgerEntry);
 			}
-			oResultSet.close();
-			stmt.close();
 
-			return lstLedgerEntries;
+			return ledgerEntries;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -126,27 +123,27 @@ public final class LedgerDB {
 	}
 
 	private static int getLedgerEntryId() throws SQLException {
-		return oResultSet.getInt(LedgerColumnEnum.LEDGER_ENTRY_ID.getColumnName());
+		return oResultSet.getInt(LedgerColumn.LEDGER_ENTRY_ID.getName());
 	}
 
 	private static int getBillId() throws SQLException {
-		return oResultSet.getInt(LedgerColumnEnum.BILL_ID.getColumnName());
+		return oResultSet.getInt(LedgerColumn.BILL_ID.getName());
 	}
 
 	private static BigDecimal getAmountDue() throws SQLException {
-		return oResultSet.getBigDecimal(LedgerColumnEnum.AMOUNT_DUE.getColumnName());
+		return oResultSet.getBigDecimal(LedgerColumn.AMOUNT_DUE.getName());
 	}
 
 	private static BigDecimal getMinimumPayment() throws SQLException {
-		return oResultSet.getBigDecimal(LedgerColumnEnum.MINIMUM_PAYMENT.getColumnName());
+		return oResultSet.getBigDecimal(LedgerColumn.MINIMUM_PAYMENT.getName());
 	}
 
 	private static Date getDueDate() throws SQLException {
-		return oResultSet.getDate(LedgerColumnEnum.DUE_DATE.getColumnName());
+		return oResultSet.getDate(LedgerColumn.DUE_DATE.getName());
 	}
 
 	private static Date getDatePaid() throws SQLException {
-		return oResultSet.getDate(LedgerColumnEnum.DATE_PAID.getColumnName());
+		return oResultSet.getDate(LedgerColumn.DATE_PAID.getName());
 	}
 
 	private static void databaseFinally() {
