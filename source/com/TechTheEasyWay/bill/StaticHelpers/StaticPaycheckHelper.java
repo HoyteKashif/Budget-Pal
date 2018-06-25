@@ -53,21 +53,6 @@ public class StaticPaycheckHelper
 	}
 	
 	/**
-	 * Get the paychecks that can be used for the given {@code MonthlyBill} in
-	 * the given {@code Month}.
-	 * 
-	 * @param p_oBill
-	 *            Montly Bill
-	 * @param p_oMonth
-	 *            Month of the Due Date used to Query
-	 * @return {@code List<LocalDate>} List of Paydays that can be used to pay
-	 *         the given bill
-	 */
-	public static List<LocalDate> getPaychecksForBillMonth(final BillModel p_oBill, final Month p_oMonth) {
-		return getPaychecksForBillMonth(p_oBill, p_oMonth, Year.now());
-	}
-	
-	/**
 	 * 
 	 * @param p_oBill
 	 * @return
@@ -83,8 +68,27 @@ public class StaticPaycheckHelper
 		return hshmapMonthToPaychecks;
 	}
 
+	/**
+	 * Get the paychecks that can be used for the given {@code MonthlyBill} in
+	 * the given {@code Month}.
+	 * 
+	 * @param p_oBill
+	 *            Montly Bill
+	 * @param p_oMonth
+	 *            Month of the Due Date used to Query
+	 * @return {@code List<LocalDate>} List of Paydays that can be used to pay
+	 *         the given bill
+	 */
+	public static List<LocalDate> getPaychecksForBillMonth(final BillModel p_oBill, final Month p_oMonth) {
+		return getPaychecksForBillMonth(p_oBill, p_oMonth, Year.now());
+	}
 
-
+	public static List<LocalDate> getPaychecksForBillMonth(final BillModel p_oBill, final Month p_oMonth, final Integer p_iYearAdjustment)
+	{
+		return getPaychecksForBillMonth(p_oBill, p_oMonth,
+				Year.of(LocalDate.now().getYear()).plusYears(p_iYearAdjustment));
+	}
+	
 	/**
 	 * Get the paychecks that can be used for the given {@code MonthlyBill} in
 	 * the given {@code Month}.
@@ -100,7 +104,7 @@ public class StaticPaycheckHelper
 	 */
 	public static List<LocalDate> getPaychecksForBillMonth(final BillModel p_oBill, final Month p_oMonth,
 			final Year oYear) {
-		LocalDate oUpcomingDueDate = LocalDate.of(oYear.getValue(), p_oMonth.getValue(), p_oBill.getDueDate());
+		final LocalDate oUpcomingDueDate = LocalDate.of(oYear.getValue(), p_oMonth.getValue(), p_oBill.getDueDate());
 		// get paychecks that fall in-between the Date above and the DueDate
 		// prior to this one
 		LocalDate oPreviousDueDate = oUpcomingDueDate.minusMonths(BigInteger.ONE.intValue());
