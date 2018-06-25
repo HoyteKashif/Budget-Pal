@@ -62,11 +62,4 @@ class BillCombinationHelper
 		}
         return lSum;
 	}
-	
-	/*Driver function to check for above function*/
-//	public static void main (String[] args) 
-//	{
-//		getCombinations();
-//		lstAllCombinations.forEach(combination -> {System.out.println(String.format("%s Total Amount $%s",combination, getTotalAmount(combination)));});
-//	}
 }

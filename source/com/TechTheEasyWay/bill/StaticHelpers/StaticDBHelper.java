@@ -9,8 +9,10 @@ public class StaticDBHelper {
 	
 	
 	public enum BillApplicationDB{ 
-		USER("bill_application_user"),
-		PASSWORD("p@ssword01"),
+//		USER("bill_application_user"),
+//		PASSWORD("p@ssword01"),
+		USER("root"),
+		PASSWORD("An051850"),
 		URL("jdbc:mysql://localhost:3306/bill_application");
 		
 		private String strParamValue;

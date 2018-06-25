@@ -3,8 +3,10 @@ package com.TechTheEasyWay.bill.StaticHelpers;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import com.TechTheEasyWay.bill.data.model.BillModel;
 
@@ -16,7 +18,9 @@ public class StaticMonthlyBillsHelper {
 	 * @param p_oBill
 	 * @return
 	 */
-	public static LocalDate getDate(final BillModel p_oBill) {
+	public static LocalDate getCurrentDueDate(final BillModel p_oBill) {
+		Objects.requireNonNull(p_oBill);
+		
 		return LocalDate.of(LocalDate.now().getYear(), LocalDate.now().getMonth(), p_oBill.getDueDate());
 	}
 
@@ -60,17 +64,56 @@ public class StaticMonthlyBillsHelper {
 			final Month p_oMonth) {
 		List<LocalDate> lstOfDueDates = new ArrayList<>();
 		for (int iCounter = 1; iCounter <= p_iNumberOfDates; iCounter++) {
-			LocalDate oDate = null;
-			if ((oDate = LocalDate.of(LocalDate.now().getYear(), p_oMonth, p_oBill.getDueDate()))
-					.isAfter(LocalDate.now())) {
+			LocalDate oDate = getDueDateByMonth(p_oMonth, p_oBill);
+			if (isPassedCurrentDate(oDate)) {
 				lstOfDueDates.add(oDate);
 			} else {
-				lstOfDueDates.add(
-						LocalDate.of(LocalDate.now().getYear(), p_oMonth, p_oBill.getDueDate()).plusMonths(iCounter));
+				lstOfDueDates.add(getDateInFuture(p_oMonth, p_oBill.getDueDate(), iCounter));
 			}
-
 		}
+		
 		return lstOfDueDates;
+	}
+	
+	public static Year getCurrentYear()
+	{
+		return Year.of(LocalDate.now().getYear());
+	}
+	
+	public static Year getYear(final int p_iYearAdjustment)
+	{
+		return getCurrentYear().plusYears(p_iYearAdjustment);
+	}
+	
+	private static LocalDate getDueDateByMonth(final Month p_oMonth, final BillModel p_oBill)
+	{
+		return LocalDate.of(LocalDate.now().getYear(), p_oMonth, p_oBill.getDueDate());
+	}
+	
+	public static boolean isNotPassedCurrentDate(final BillModel p_oBill, final Month p_oMonth)
+	{
+		return !isPassedCurrentDate(p_oBill, p_oMonth);
+	}
+	
+	public static boolean isPassedCurrentDate(final BillModel p_oBill, final Month p_oMonth)
+	{
+		return isPassedCurrentDate(getDueDateByMonth(p_oMonth, p_oBill));
+	}
+	
+	private static boolean isPassedCurrentDate(final LocalDate p_Date)
+	{
+		return Objects.requireNonNull(p_Date).isAfter(LocalDate.now()); 
+	}
+	
+	
+	private static LocalDate getDateInFuture(final Month p_oMonth, final int p_iDayOfMonth, final int p_iMonthsInFuture)
+	{
+		return getDateInCurrentYear(p_oMonth, p_iDayOfMonth).plusMonths(p_iMonthsInFuture);
+	}
+	
+	private static LocalDate getDateInCurrentYear(final Month p_oMonth, final int p_iDayOfMonth)
+	{
+		return LocalDate.of(LocalDate.now().getYear(), p_oMonth, p_iDayOfMonth);
 	}
 
 	/**

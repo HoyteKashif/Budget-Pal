@@ -1,24 +1,27 @@
-package  com.TechTheEasyWay.page;
+package com.TechTheEasyWay.page;
 
 import org.apache.wicket.Page;
 import org.apache.wicket.protocol.http.WebApplication;
 
-public class WicketApplication extends WebApplication{
-	
-	public WicketApplication()
-	{
+import com.TechTheEasyWay.page.ledger.ViewLedgerInfoPage;
+
+public class WicketApplication extends WebApplication {
+
+	public WicketApplication() {
 		super();
-	}
-	
-	@Override
-	public Class<? extends Page> getHomePage()
-	{
-		return SignInPage.class;
 	}
 
 	@Override
-	public void init()
-	{
+	public Class<? extends Page> getHomePage() {
+		return ViewLedgerInfoPage.class;
+	}
+
+	@Override
+	public void init() {
 		super.init();
+
+		/** New Pages (my own CSS and JavaScript) **/
+		mountPage("/LedgerInfo", ViewLedgerInfoPage.class);
+		mountPage("/CalendarPage", CalendarPage.class);
 	}
 }

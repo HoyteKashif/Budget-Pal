@@ -1,108 +1,114 @@
 package com.TechTheEasyWay.bill.data.model;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.sql.Date;
 
 import org.apache.wicket.util.io.IClusterable;
 
-
-public class LedgerEntryModel implements IClusterable
-{
-	/**SerialUID*/
+public final class LedgerEntryModel implements IClusterable {
+	/** SerialUID */
 	private static final long serialVersionUID = -1341104582702369393L;
-	
-	private Integer iLedgerEntryId;
-	private String strBillName;
-	private BigDecimal lAmountDue;
-	private BigDecimal lMinimumPayment;
-	private Date dtDueDate;
-	private Date dtDatePaid;
-	
-	/**
-	 * @return the iLedgerEntryId
-	 */
-	public Integer getiLedgerEntryId() {
-		return iLedgerEntryId;
+
+	// Ledger Entry Data
+	private Integer id;
+	private BigDecimal amountDue;
+	private BigDecimal minimumPayment;
+	private Date dueDate;
+	private Date datePaid;
+
+	// related Bill Data
+	private BillModel oBill;
+
+	public LedgerEntryModel() {
 	}
 
 	/**
-	 * @param iLedgerEntryId the iLedgerEntryId to set
+	 * @return the oBill
 	 */
-	public void setiLedgerEntryId(Integer iLedgerEntryId) {
-		this.iLedgerEntryId = iLedgerEntryId;
+	public BillModel getBill() {
+		return oBill;
 	}
 
 	/**
-	 * @return the strBillName
+	 * @param p_oBill
+	 *            the oBill to set
 	 */
-	public String getStrBillName() {
-		return strBillName;
+	public void setBillModel(final BillModel p_oBill) {
+		this.oBill = p_oBill;
 	}
 
 	/**
-	 * @param strBillName the strBillName to set
+	 * @return the id
 	 */
-	public void setStrBillName(String strBillName) {
-		this.strBillName = strBillName;
+	public Integer getId() {
+		return id;
 	}
 
 	/**
-	 * @return the lAmountDue
+	 * @param p_id
+	 *            the id to set
 	 */
-	public BigDecimal getlAmountDue() {
-		return lAmountDue;
+	public void setLedgerEntryId(final Integer p_id) {
+		this.id = p_id;
 	}
 
 	/**
-	 * @param lAmountDue the lAmountDue to set
+	 * @return the amountDue
 	 */
-	public void setlAmountDue(BigDecimal lAmountDue) {
-		this.lAmountDue = lAmountDue;
+	public BigDecimal getAmountDue() {
+		return amountDue;
 	}
 
 	/**
-	 * @return the lMinimumPayment
+	 * @param p_amountDue
+	 *            the amountDue to set
 	 */
-	public BigDecimal getlMinimumPayment() {
-		return lMinimumPayment;
+	public void setAmountDue(final BigDecimal p_amountDue) {
+		this.amountDue = p_amountDue;
 	}
 
 	/**
-	 * @param lMinimumPayment the lMinimumPayment to set
+	 * @return the minimumPayment
 	 */
-	public void setlMinimumPayment(BigDecimal lMinimumPayment) {
-		this.lMinimumPayment = lMinimumPayment;
+	public BigDecimal getMinimumPayment() {
+		return minimumPayment;
 	}
 
 	/**
-	 * @return the dtDuedate
+	 * @param p_minimumPayment
+	 *            the minimumPayment to set
+	 */
+	public void setMinimumPayment(final BigDecimal p_minimumPayment) {
+		this.minimumPayment = p_minimumPayment;
+	}
+
+	/**
+	 * @return the dueDate
 	 */
 	public Date getDueDate() {
-		return dtDueDate;
+		return dueDate;
 	}
 
 	/**
-	 * @param dtDuedate the dtDuedate to set
+	 * @param p_duedate
+	 *            the dueDate to set
 	 */
-	public void setDueDate(Date dtDueDate) {
-		this.dtDueDate = dtDueDate;
+	public void setDueDate(final Date p_dueDate) {
+		this.dueDate = p_dueDate;
 	}
 
 	/**
-	 * @return the dtDatePaid
+	 * @return the datePaid
 	 */
 	public Date getDatePaid() {
-		return dtDatePaid;
+		return datePaid;
 	}
 
 	/**
-	 * @param dtDatePaid the dtDatePaid to set
+	 * @param p_datePaid
+	 *            the datePaid to set
 	 */
-	public void setDatePaid(Date dtDatePaid) {
-		this.dtDatePaid = dtDatePaid;
-	}
-
-	public LedgerEntryModel()
-	{
+	public void setDatePaid(final Date p_datePaid) {
+		this.datePaid = p_datePaid;
 	}
 }
