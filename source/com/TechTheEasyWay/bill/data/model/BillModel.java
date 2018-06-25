@@ -4,43 +4,56 @@ import java.math.BigDecimal;
 
 import org.apache.wicket.util.io.IClusterable;
 
-public class BillModel implements IClusterable
-{	
-	/**SerialUID*/
+public final class BillModel implements IClusterable {
+	/** SerialUID */
 	private static final long serialVersionUID = 8619877080056399980L;
-	
-	private String strName;
-	private BigDecimal lAmount;
-	private int iDueDate;
-	
-	public BillModel()
-	{
-		
+
+	private int id;
+	private String name;
+	private BigDecimal amount;
+	private int dueDate;
+	private BigDecimal balance;
+
+	public BillModel() {
 	}
-	
-	public BillModel(final String p_strName, final BigDecimal p_lAmount, final int p_iDueDate)
-	{
-		this.strName = p_strName;
-		this.lAmount = p_lAmount;
-		this.iDueDate = p_iDueDate;
+
+	public int getId() {
+		return id;
 	}
-	
+
+	public void setId(final int p_id) {
+		this.id = p_id;
+	}
+
 	public String getName() {
-		return strName;
+		return name;
 	}
-	public void setName(final String p_strName) {
-		this.strName = p_strName;
+
+	public void setName(final String p_name) {
+		this.name = p_name;
 	}
+
 	public BigDecimal getAmount() {
-		return lAmount;
+		return amount;
 	}
-	public void setAmount(final BigDecimal p_lAmount) {
-		this.lAmount = p_lAmount;
+
+	public void setAmount(final BigDecimal p_amount) {
+		this.amount = p_amount;
 	}
+
 	public int getDueDate() {
-		return iDueDate;
+		return dueDate;
 	}
-	public void setDueDate(final int p_iDueDate) {
-		this.iDueDate = p_iDueDate;
+
+	public void setDueDate(final int p_dueDate) {
+		this.dueDate = p_dueDate;
+	}
+
+	public BigDecimal getBalance() {
+		return balance;
+	}
+
+	public void setBalance(final BigDecimal p_balance) {
+		this.balance = p_balance;
 	}
 }
