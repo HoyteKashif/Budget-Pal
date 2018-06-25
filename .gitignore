@@ -1,0 +1,16 @@
+
+/bin/
+./WebContent/*
+.DS_Store
+._.DS_Store
+.classpath
+.settings/
+WebContent/
+designs_documents/
+resources/data/
+database/insert_into_bill_table.sql
+database/._log.txt
+database/._setup.txt
+database/._error_log.txt
+database/._create_application_tables.sql
+database/._insert_into_bill_table.sql
