@@ -1,68 +1,106 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" 
-      xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.3-strict.dtd" 
-      xml:lang="en" 
-      lang="en">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.3-strict.dtd"
+	lang="en">
 <head>
+<title></title>
+<style>
+/*
+table {
+	border-collapse: collapse;
+	color: #73879C;
+	width: 767px;
+}
+
+td {
+	text-align: left;
+}
+
+th, td {
+	border: 2px solid #ddd;
+	padding: 8px;
+}
+
+tr:nth-child(odd) {
+	background-color: white;
+}
+
+tr:nth-child(1) {
+	background-color: #405467;
+	text-align: left;
+	color: #ECF0F1;
+}
+
+td:nth-child(1), td:nth-child(2), td:nth-child(3), td:nth-child(4) {
+	border-right-width: 0px;
+}
+
+td:nth-child(2), td:nth-child(3), td:nth-child(4), td:nth-child(5) {
+	border-left-width: 0px;
+}
+
+td:nth-child(1) {
+	border-left-width: 0px;
+}
+
+td:nth-child(5) {
+	border-right-width: 0px;
+}
+
+td a {
+	color: #5A738E;
+	text-align: right;
+}
+
+td {
+	border-bottom-width: 0px;
+}
+
+.ALIGN_Right {
+	text-align: right;
+}
+
+tr {
+	border-right-width: 0px;
+	border-left-width: 0px;
+	border-bottom-width: 0px;
+}
+*/
+.AddEntry {
+	font-size: 25px;
+}
+/*used on the leading div container style="width: 767px; background-color: #f9f9f9; border: 0.5px solid #ddd; margin: auto; margin-top: 20px"*/
+</style>
 </head>
 <body>
-<wicket:panel>
-<form wicket:id="formLedgerTable">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Ledger</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><button type="submit" class="btn btn-success" wicket:id="btnAddEntry">Add Entry</button></li>
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
+	<wicket:panel>
+		<div class="table_ledger_info" style="margin-top: 40px">
+			<div
+				style="text-align: center; width: 100%; font-size: 25px; margin-top: 5px">
+				<span style="display: inline-block; text-align: center">Ledger</span>
+				<a href="#" style="float: right; margin-right: 10px;"
+					wicket:id="lnkAddEntry"><i class='fa fa-plus'
+					aria-hidden='true'></i></a>
+			</div>
+			<table>
+				<tr>
+					<td>Bill</td>
+					<td>Amount Due</td>
+					<td>Due Date</td>
+					<td>Date Paid</td>
+					<td>Action</td>
+				</tr>
 
-                  <div class="x_content">
-                    <div class="table-responsive">
-                      <table class="table table-striped jambo_table bulk_action">
-                        <thead>
-                          <tr class="headings">
-                            <th class="column-title">Bill</th>
-                            <th class="column-title">Amount Due </th>
-                            <th class="column-title">Due Date </th>
-                            <th class="column-title">Date Paid </th>
-                            <th class="column-title">Action</th>
-                            <!-- <th class="column-title">Status </th>-->
-                            <!-- <th class="column-title">Amount </th>-->
-                          </tr>
-                        </thead>
-
-                        <tbody>
-                          <tr class="even pointer" wicket:id="lstLedgerEntries">
-                            <td wicket:id="strBillName">[Bill Name]</td>
-                            <td wicket:id="strAmountDue">[Amount Due]</td>
-                            <td wicket:id="strDueDate">[Due Date]</td>
-                            <td wicket:id="strDatePaid">[Date Paid]</td>
-                            <td><a class="glyphicon glyphicon-remove" wicket:id="lnkDelete"></a></td>
-                           <!-- <td wicket:id="strStatus">[Status]</td>-->
-                            <!-- <td wicket:id="strAmount"class="a-right a-right ">$7.45</td>-->
-                          </tr>
-                          <!-- 
-                          <tr class="odd pointer">
-                            <td class=" ">121000039</td>
-                            <td class=" ">May 23, 2014 11:30:12 PM</td>
-                            <td class=" ">121000208 <i class="success fa fa-long-arrow-up"></i>
-                            </td>
-                            <td class=" ">John Blank L</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$741.20</td>
-                          </tr>
-                          -->
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </div>
-	</form>
-</wicket:panel>
+				<tr wicket:id="lstLedgerEntries">
+					<td wicket:id="strBillName">[Bill Name]</td>
+					<td wicket:id="strAmountDue">[Amount Due]</td>
+					<td wicket:id="strDueDate">[Due Date]</td>
+					<td wicket:id="strDatePaid">[Date Paid]</td>
+					<td><a href="#" wicket:id="lnkDelete"><i
+							class="fa fa-trash" aria-hidden="true"></i></a></td>
+				</tr>
+			</table>
+		</div>
+	</wicket:panel>
 </body>
 </html>
