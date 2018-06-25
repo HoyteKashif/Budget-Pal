@@ -12,21 +12,26 @@ import com.TechTheEasyWay.bill.DB.BillDB;
 import com.TechTheEasyWay.bill.data.model.BillModel;
 
 public class StaticBillDateHelper {
-	
+
 	/**
-	 * Get a map of Bills to paychecks for the next 12 Months. The HashMap links Bills 
-	 * to Paychecks within a Month showing what Paychecks can be used to pay a particular Bill.
+	 * Get a map of Bills to paychecks for the next 12 Months. The HashMap links
+	 * Bills to Paychecks within a Month showing what Paychecks can be used to
+	 * pay a particular Bill.
 	 */
-	public static HashMap<BillModel, HashMap<Month, List<LocalDate>>> getMapOfBillsToMonth() 
-	{
+	public static HashMap<BillModel, HashMap<Month, List<LocalDate>>> getMapOfBillsToMonth() {
 		HashMap<BillModel, HashMap<Month, List<LocalDate>>> hshmapBillToPaycheckByMonth = new HashMap<>();
 		// Iterate through the list of Monthly Bills
 		for (BillModel oBill : BillDB.getAllBillModels()) {
 			// Iterate through a list of the next 12 Months
 			for (Month oMonth : Month.values()) {
 				List<LocalDate> lstPayDates = new ArrayList<LocalDate>();
-				// if the month is before the current month look at the Month in the
-				// upcoming new year
+
+				if (StaticMonthlyBillsHelper.isNotPassedCurrentDate(oBill, oMonth)) {
+					// TODO: if the month is before the current month look at
+					// the Month in the
+					// upcoming new year
+				}
+
 				if (oMonth.compareTo(LocalDate.now().getMonth()) < 0
 						|| (oMonth.compareTo(LocalDate.now().getMonth()) == 0
 								&& oBill.getDueDate() < LocalDate.now().getDayOfMonth())) {
@@ -40,19 +45,21 @@ public class StaticBillDateHelper {
 		}
 		return hshmapBillToPaycheckByMonth;
 	}
-	
+
 	/**
-	 * Used to add another entry to the {@code HashMap<MonthlyBill, HashMap<Month, List<LocalDate>>>}.
+	 * Used to add another entry to the
+	 * {@code HashMap<MonthlyBill, HashMap<Month, List<LocalDate>>>}.
+	 * 
 	 * @param p_hshmapBillToPaycheckByMonth
-	 * @param p_oBill #MonthlyBill
+	 * @param p_oBill
+	 *            #MonthlyBill
 	 * @param p_oMonth
 	 * @param p_lstDates
 	 * @return {@code HashMap<MonthlyBill, HashMap<Month, List<LocalDate>>>}
 	 */
 	private static HashMap<BillModel, HashMap<Month, List<LocalDate>>> addToHashMap(
 			final HashMap<BillModel, HashMap<Month, List<LocalDate>>> p_hshmapBillToPaycheckByMonth,
-			final BillModel p_oBill, final Month p_oMonth, final List<LocalDate> p_lstDates) 
-	{
+			final BillModel p_oBill, final Month p_oMonth, final List<LocalDate> p_lstDates) {
 		if (p_hshmapBillToPaycheckByMonth.containsKey(p_oBill)) {
 			p_hshmapBillToPaycheckByMonth.get(p_oBill).put(p_oMonth, p_lstDates);
 		} else {
@@ -62,7 +69,7 @@ public class StaticBillDateHelper {
 		}
 		return p_hshmapBillToPaycheckByMonth;
 	}
-	
+
 	/**
 	 * Print out the Bills with Paycheck dates per month Format: <br/>
 	 * ********** CHASE_CREDIT_CARD <br/>
@@ -81,8 +88,7 @@ public class StaticBillDateHelper {
 	 * 
 	 * @param p_oHash
 	 */
-	public static void printBillDateHashMap(final HashMap<BillModel, HashMap<Month, List<LocalDate>>> p_oHash) 
-	{
+	public static void printBillDateHashMap(final HashMap<BillModel, HashMap<Month, List<LocalDate>>> p_oHash) {
 		for (Month oMonth : Month.values()) {
 			System.out.println("\n**********  " + oMonth);
 			for (BillModel oBill : p_oHash.keySet()) {
@@ -91,5 +97,5 @@ public class StaticBillDateHelper {
 			}
 		}
 	}
-	
+
 }
