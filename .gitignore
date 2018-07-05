@@ -3,8 +3,6 @@
 ./WebContent/*
 .DS_Store
 ._.DS_Store
-.classpath
-.settings/
 WebContent/
 designs_documents/
 resources/data/

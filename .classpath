@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="source"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_101"/>
+	<classpathentry kind="lib" path="lib/commons-fileupload-1.3.2.jar"/>
+	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.40-bin.jar" sourcepath="/Users/WizardOfOz/mysql-connector-java-5.1.40/src"/>
+	<classpathentry kind="lib" path="lib/commons-collections4-4.1.jar"/>
+	<classpathentry kind="lib" path="lib/commons-io-2.5.jar"/>
+	<classpathentry kind="lib" path="lib/wicket-webjars-0.5.0.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j-api-1.7.21.jar"/>
+	<classpathentry kind="lib" path="/media/wiz/fc3b4c14-79c0-48c6-b7bb-a2c14d4d30ec/programming workspaces/java_workspace/PocketAssistApplication/lib/wicket-core-7.7.0.jar" sourcepath="/media/wiz/fc3b4c14-79c0-48c6-b7bb-a2c14d4d30ec/programming workspaces/3rd Party Application Jars/Apache Wicket"/>
+	<classpathentry kind="lib" path="/media/wiz/fc3b4c14-79c0-48c6-b7bb-a2c14d4d30ec/programming workspaces/java_workspace/PocketAssistApplication/lib/wicket-extensions-7.7.0.jar"/>
+	<classpathentry kind="lib" path="lib/wicket-util-7.7.0.jar"/>
+	<classpathentry kind="lib" path="lib/wicket-datetime-7.7.0.jar"/>
+	<classpathentry kind="lib" path="lib/wicket-request-7.7.0.jar"/>
+	<classpathentry kind="lib" path="lib/jsoup-1.8.3.jar"/>
+	<classpathentry kind="lib" path="lib/wicket-devutils-7.7.0.jar"/>
+	<classpathentry kind="lib" path="lib/javax.servlet-api-3.0.1.jar" sourcepath="lib/javax.servlet-api-3.0.1-sources.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
