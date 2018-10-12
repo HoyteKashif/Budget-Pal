@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Objects;
 
 import com.TechTheEasyWay.bill.StaticHelpers.ModelLoader;
-import com.TechTheEasyWay.bill.StaticHelpers.StaticDBHelper.BillApplicationDB;
+import com.TechTheEasyWay.bill.StaticHelpers.MySqlHelper;
 import com.TechTheEasyWay.bill.data.model.BillModel;
 
 public final class BillDB {
@@ -44,7 +44,7 @@ public final class BillDB {
 
 	public static void insertIntoBillTableDB(final BigDecimal p_lAmountDue, final BigDecimal p_lMinimumPayment,
 			final java.sql.Date p_dtDueDate, final java.sql.Date p_dtDatePaid) {
-		try (Connection con = BillApplicationDB.getConnection()) {
+		try (Connection con = MySqlHelper.getConnection()) {
 
 			java.sql.PreparedStatement oStatement = con.prepareStatement(
 					"INSERT INTO ledger ( amount_due, minimum_payment, due_date, date_paid)" + " VALUES( ?, ?, ?, ? )");
@@ -60,7 +60,7 @@ public final class BillDB {
 	}
 
 	public static ResultSet getAll() {
-		try (Connection con = BillApplicationDB.getConnection()) {
+		try (Connection con = MySqlHelper.getConnection()) {
 
 			return con.createStatement().executeQuery("select * from bill");
 
@@ -71,7 +71,7 @@ public final class BillDB {
 	}
 
 	public static List<String> getAllBillNames() {
-		try (Connection con = BillApplicationDB.getConnection()) {
+		try (Connection con = MySqlHelper.getConnection()) {
 			List<String> lstBillNames = new ArrayList<>();
 
 			ResultSet oResults = con.createStatement().executeQuery("select distinct bill.bill_name from bill");
@@ -86,7 +86,7 @@ public final class BillDB {
 	}
 
 	public static List<BillModel> getAllBillModels() {
-		try (Connection con = BillApplicationDB.getConnection()) {
+		try (Connection con = MySqlHelper.getConnection()) {
 			final List<BillModel> lstModels = new ArrayList<>();
 
 			oResultSet = con.createStatement().executeQuery("select * from bill");
@@ -104,7 +104,7 @@ public final class BillDB {
 	}
 
 	public static BillModel getBillModelById(final int p_iBillId) throws SQLException {
-		try (Connection con = BillApplicationDB.getConnection()) {
+		try (Connection con = MySqlHelper.getConnection()) {
 			java.sql.PreparedStatement oStatement = con.prepareStatement(
 					"SELECT bill.bill_id, bill.bill_name, bill.day_due, bill.amount, bill.balance FROM bill WHERE bill.bill_id = ?");
 			oStatement.setInt(1, p_iBillId);

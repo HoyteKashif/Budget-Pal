@@ -12,7 +12,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-import com.TechTheEasyWay.bill.StaticHelpers.StaticDBHelper.BillApplicationDB;
+import com.TechTheEasyWay.bill.StaticHelpers.MySqlHelper;
 import com.TechTheEasyWay.bill.data.model.LedgerEntryModel;
 
 /**
@@ -49,7 +49,7 @@ public final class LedgerDB {
 	public static void delete(final LedgerEntryModel p_oLedgerEntry) {
 		Objects.requireNonNull(p_oLedgerEntry);
 
-		try (Connection oConnection = BillApplicationDB.getConnection()) {
+		try (Connection oConnection = MySqlHelper.getConnection()) {
 			final PreparedStatement statement = oConnection.prepareStatement("delete from ledger where ledger_id = ?");
 			statement.setInt(1, p_oLedgerEntry.getId());
 			statement.execute();
@@ -71,7 +71,7 @@ public final class LedgerDB {
 	public static void insert(final int p_iBillId, final BigDecimal p_lAmountDue, final BigDecimal p_lMinimumPayment,
 			final Date p_dtDueDate, final Date p_dtDatePaid) {
 
-		try (Connection oConnection = BillApplicationDB.getConnection()) {
+		try (Connection oConnection = MySqlHelper.getConnection()) {
 
 			PreparedStatement oStatement = oConnection
 					.prepareStatement("INSERT INTO ledger (bill_id, amount_due, minimum_payment, due_date, date_paid)"
@@ -91,7 +91,7 @@ public final class LedgerDB {
 	}
 
 	public static List<LedgerEntryModel> getAllLedgerModels() {
-		try (Connection oConnection = BillApplicationDB.getConnection()) {
+		try (Connection oConnection = MySqlHelper.getConnection()) {
 
 			final Statement stmt = oConnection.createStatement();
 			final String strQuery = "select ledger.ledger_id, ledger.bill_id, ledger.amount_due, ledger.minimum_payment, ledger.due_date, ledger.date_paid from ledger";
