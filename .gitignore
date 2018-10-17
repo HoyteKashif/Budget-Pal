@@ -12,3 +12,4 @@ database/._setup.txt
 database/._error_log.txt
 database/._create_application_tables.sql
 database/._insert_into_bill_table.sql
+lib/
