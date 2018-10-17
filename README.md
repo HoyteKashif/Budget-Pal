@@ -2,7 +2,7 @@
 
 Budget Management Application 
 - written in JAVA, HTML, JavaScript and CSS.
-- MYSql Database
+- MySql Database
 - Webpage written using Java Wicket
 - web/application container TOMEE
 
