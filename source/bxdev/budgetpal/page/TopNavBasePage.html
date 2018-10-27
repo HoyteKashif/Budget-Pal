@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.3-strict.dtd">
+<head>
+<title>Pocket Assist Application</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="resources/css/fontawesome/css/font-awesome.min.css"
+	rel="stylesheet">
+<link href="resources/css/main.css" rel="stylesheet">
+<link href="resources/css/calendar.css" rel="stylesheet">
+<link href="resources/css/navigation.css" rel="stylesheet">
+<link href="resources/css/my_main.css" rel="stylesheet">
+</head>
+<body>
+	<div id="main_content">
+		<!-- links for the navigation -->
+		<ul class="top_nav">
+			<li><a href="#" wicket:id="lnkLedger">Ledger</a></li>
+			<li><a href="#" wicket:id="lnkCalendar">Calendar</a></li>
+		</ul>
+
+		<wicket:child />
+
+	</div>
+	<script src="resources/js/Navigation.js"></script>
+</body>
+
+</html>

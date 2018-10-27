@@ -1,9 +1,6 @@
 /**************************************************************/
 /*                          General                           */
 /**************************************************************/
-/*******************************************************************/
-/*                             General                             */
-/*******************************************************************/
 *, *:before, *:after {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -56,8 +53,8 @@ p {
 ul {
 	line-height: 1.5em;
 	list-style-type: disc;
-	margin: 0 0 0 1.5em;
-	padding: 0;
+	/*margin: 0 0 0 1.5em;*/
+	/*padding: 0;*/
 }
 
 img {
@@ -83,6 +80,12 @@ select:disabled {
 	font-weight: bold;
 	margin-left: -0.3em;
 	margin-top: 0.1em;
+}
+
+button {
+	border-radius: 2px;
+	border-style: none;
+	padding: 5px 15px;
 }
 
 #main_container {
@@ -111,6 +114,14 @@ select:disabled {
 
 .float_right {
 	float: right;
+}
+
+.font_standard {
+	font-size: 16px;
+}
+
+.display_table_cell {
+	display: table-cell;
 }
 
 /**************************************************************/
@@ -150,10 +161,19 @@ select:disabled {
 /***********************************************************/
 /*                       Table Ledger Info                 */
 /***********************************************************/
+.table_ledger_info {
+	background-color: #f9f9f9;
+	border: 0.5px solid #ddd;
+	margin: auto;
+	margin-top: 20px;
+	width: 767px;
+	margin: auto;
+}
+
 .table_ledger_info table {
 	border-collapse: collapse;
-	color: #73879C;
-	width: 767px;
+	/*color: #73879C;*/
+	width: 100%;
 }
 
 .table_ledger_info td {
@@ -195,9 +215,71 @@ select:disabled {
 }
 
 .table_ledger_info td:nth-child(1) {
-	border-left-width: 0px;
+	/*border-left-width: 0px;*/
+	
 }
 
 .table_ledger_info td:nth-child(5) {
-	border-right-width: 0px;
+	/*border-right-width: 0px;*/
+	
+}
+
+/******************************************************/
+/*                    Containers                      */
+/******************************************************/
+.cont_row {
+	/*padding: 10px;*/
+	/*height: 50px;*/
+	margin: 10px 0px;
+}
+
+.cont_cell {
+	margin: 0px 5px;
+}
+
+.cont_default {
+	width: 500px;
+	margin: auto;
+}
+
+.cont_error_panel {
+	/*background-color: #f44336;*/
+	border: 1px solid red;
+	/*color: white;*/
+	display: table;
+	margin: 20px auto;
+	/*padding: 20px;*/
+	width: 50%;
+}
+
+.cont_error_icon {
+	color: black;
+	background-color: red;
+	display: table-cell;
+	font-size: 30px;
+	text-align: center;
+	width: 10%;
+	vertical-align: middle;
+}
+
+/******************************************************/
+/*                       Buttons                      */
+/******************************************************/
+.green_button {
+	background-color: #008000; /*green*/
+	color: #FFFFFF; /*white*/
+}
+
+.gray_button {
+	background-color: #dcdcdc; /*gainsboro*/
+	color: 000000; /*black*/
+}
+
+.button_layout_center {
+	margin: 20px auto;
+	text-align: center;
+}
+
+.button_layout_center button {
+	margin: 0px 10px;
 }

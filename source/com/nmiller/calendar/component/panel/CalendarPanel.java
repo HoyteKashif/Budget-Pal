@@ -21,13 +21,14 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.PropertyModel;
 
-import com.ksolutions.calendar.panel.DayPanel;
 import com.nmiller.calendar.component.label.MonthLabel;
 import com.nmiller.calendar.data.model.CalendarCriteria;
 import com.nmiller.calendar.data.model.CalendarModel;
 import com.nmiller.calendar.data.model.DayModel;
 import com.nmiller.calendar.data.model.WeekModel;
 import com.nmiller.calendar.util.helper.DataHelper;
+
+import bxdev.budgetpal.calendar.panel.DayPanel;
 
 
 public abstract class CalendarPanel extends Panel
