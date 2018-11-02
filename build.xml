@@ -9,7 +9,9 @@
 	<property name="build.dir" value="WebContent" />
 	<property name="build.main.classes" value="${build.dir}/classes" />
 	<property name="tomee.webapp.dir" value="/home/wiz/apache-tomee-plus-7.0.3/webapps/" />
-
+	<property environment="env"/>
+	<property name="tomee.deploy.dir" value="${env.CATALINA_HOME}/webapps"/>
+	
 	<path id="build.classpath">
 		<fileset dir="${lib.dir}">
 			<include name="**/*.jar" />
@@ -54,7 +56,17 @@
 
 	<!-- build web archive (war file)-->
 	<target name="war" depends="compile,copy_resources">
-		<war destfile="${tomee.webapp.dir}/${final.name}.war" webxml="${src.web.dir}/WEB-INF/web.xml">
+		
+		<!--check that the tomee deploy directory exists -->
+		<fail message="TomEE deploy directory has not been set.">
+			<condition>
+				<not>
+					<isset property="tomee.deploy.dir"/>
+				</not>
+			</condition>
+		</fail>
+		
+		<war destfile="${tomee.deploy.dir}/${final.name}.war" webxml="${src.web.dir}/WEB-INF/web.xml">
 
 			<lib dir="lib">
 				<include name="*.jar" />
@@ -70,7 +82,6 @@
 				<include name="**/*" />
 				<exclude name="**/web.xml" />
 			</fileset>
-
 		</war>
 	</target>
 
