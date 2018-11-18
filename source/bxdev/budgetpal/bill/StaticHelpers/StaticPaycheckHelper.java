@@ -10,48 +10,47 @@ import java.util.List;
 
 import bxdev.budgetpal.bill.data.model.Bill;
 
-public class StaticPaycheckHelper
-{
+public final class StaticPaycheckHelper {
 	private final static LocalDate oInitialPaycheckReceived = LocalDate.of(2016, 6, 1);
 	private final static int TWO_WEEKS = 14;
-	
+
 	/**
 	 * Get the Date of the first PayDay.
+	 * 
 	 * @return
 	 */
-	public static LocalDate getInitialPaycheckDate()
-	{
+	public static LocalDate getInitialPaycheckDate() {
 		return oInitialPaycheckReceived;
 	}
-	
+
 	/**
 	 * Test whether the bill falls on or before a specific paycheck in a Month.
+	 * 
 	 * @param p_oBill
 	 * @param p_oPayDay
 	 * @return
 	 */
-	public static boolean doesPaycheckComeBeforBill(final Bill p_oBill, final LocalDate p_oPayDay)
-	{
+	public static boolean doesPaycheckComeBeforBill(final Bill p_oBill, final LocalDate p_oPayDay) {
 		return doesPaycheckComeBeforeBill(StaticMonthlyBillsHelper.getNextBillDueDate(p_oBill), p_oPayDay);
 	}
-	
+
 	/**
-	 * Does the PayDay come after or on the date of the next time this Bill is due.
-	 * @param p_oDueDate
+	 * Does the PayDay come after or on the date of the next time this Bill is
+	 * due.
+	 * 
+	 * @param p_dueDate
 	 * @param p_oPayDay
 	 * @return
 	 */
-	public static boolean doesPaycheckComeBeforeBill(final LocalDate p_oDueDate, final LocalDate p_oPayDay)
-	{
-		return p_oDueDate.isBefore(p_oPayDay) || p_oDueDate.isEqual(p_oPayDay);
+	public static boolean doesPaycheckComeBeforeBill(final LocalDate p_dueDate, final LocalDate p_oPayDay) {
+		return p_dueDate.isBefore(p_oPayDay) || p_dueDate.isEqual(p_oPayDay);
 	}
-	
-	
+
 	public static List<Bill> getPaycheckListOfBills(final LocalDate p_oPaycheckDate,
 			final HashMap<Month, HashMap<LocalDate, List<Bill>>> hshMapBillMonth) {
 		return hshMapBillMonth.get(p_oPaycheckDate.getMonth()).get(p_oPaycheckDate);
 	}
-	
+
 	/**
 	 * 
 	 * @param p_oBill
@@ -83,12 +82,12 @@ public class StaticPaycheckHelper
 		return getPaychecksForBillMonth(p_oBill, p_oMonth, Year.now());
 	}
 
-	public static List<LocalDate> getPaychecksForBillMonth(final Bill p_oBill, final Month p_oMonth, final Integer p_iYearAdjustment)
-	{
+	public static List<LocalDate> getPaychecksForBillMonth(final Bill p_oBill, final Month p_oMonth,
+			final Integer p_iYearAdjustment) {
 		return getPaychecksForBillMonth(p_oBill, p_oMonth,
 				Year.of(LocalDate.now().getYear()).plusYears(p_iYearAdjustment));
 	}
-	
+
 	/**
 	 * Get the paychecks that can be used for the given {@code MonthlyBill} in
 	 * the given {@code Month}.
@@ -102,8 +101,7 @@ public class StaticPaycheckHelper
 	 * @return {@code List<LocalDate>} List of Paydays that can be used to pay
 	 *         the given bill
 	 */
-	public static List<LocalDate> getPaychecksForBillMonth(final Bill p_oBill, final Month p_oMonth,
-			final Year oYear) {
+	public static List<LocalDate> getPaychecksForBillMonth(final Bill p_oBill, final Month p_oMonth, final Year oYear) {
 		final LocalDate oUpcomingDueDate = LocalDate.of(oYear.getValue(), p_oMonth.getValue(), p_oBill.getDueDate());
 		// get paychecks that fall in-between the Date above and the DueDate
 		// prior to this one
@@ -174,7 +172,7 @@ public class StaticPaycheckHelper
 		}
 		return oDateIterator;
 	}
-	
+
 	/**
 	 * Get the next set of paychecks from the given start date
 	 * 
@@ -195,11 +193,10 @@ public class StaticPaycheckHelper
 		}
 		return lstOfPayDates;
 	}
-	
+
 	/**
 	 * Empty Default Constructor
 	 */
-	public StaticPaycheckHelper()
-	{
+	private StaticPaycheckHelper() {
 	}
 }

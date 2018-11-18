@@ -1,6 +1,6 @@
 package bxdev.budgetpal.bill.StaticHelpers;
 
-public class ValidationHelper {
+public final class ValidationHelper {
 
 	public static boolean hasText(final String p_strData) {
 		return !isEmpty(p_strData);
@@ -44,5 +44,8 @@ public class ValidationHelper {
 		}
 
 		return true;
+	}
+
+	private ValidationHelper() {
 	}
 }

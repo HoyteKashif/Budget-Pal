@@ -16,7 +16,6 @@ import org.apache.wicket.model.CompoundPropertyModel;
 
 import bxdev.budgetpal.bill.DB.BillDB;
 import bxdev.budgetpal.bill.DB.LedgerDB;
-import bxdev.budgetpal.bill.StaticHelpers.ValidationHelper;
 import bxdev.budgetpal.bill.data.model.Bill;
 import bxdev.budgetpal.bill.data.model.Ledger;
 import bxdev.budgetpal.page.TopNavBasePage;
@@ -123,24 +122,24 @@ public class CreateNewLedgerEntryPage extends TopNavBasePage {
 				public void validate(Form<?> form) {
 
 					/** Check bill **/
-					if (null == billSelector.getConvertedInput()) {
+					if (billSelector.getConvertedInput() == null) {
 						form.error("Select a Bill.");
 					}
 
 					/** Check amount **/
 					final BigDecimal bdAmountDue = amountDue.getConvertedInput();
-					if (null == bdAmountDue || !ValidationHelper.isNumeric(bdAmountDue.toString(), false)) {
+					if (bdAmountDue == null) {
 						form.error("Enter a valid Payment amount.");
 					}
 
 					/** Check minimum payment (not required) **/
 					final BigDecimal bdMinPayment = minimumPayment.getConvertedInput();
-					if (null != bdMinPayment && !ValidationHelper.isNumeric(bdMinPayment.toString(), false)) {
+					if (bdMinPayment == null) {
 						form.error("Enter a valid minimum Payment amount.");
 					}
 
 					/** Check the due date **/
-					if (null == dueDate.getConvertedInput()) {
+					if (dueDate.getConvertedInput() == null) {
 						form.error("Enter a valid Due Date.");
 					}
 				}

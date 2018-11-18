@@ -20,7 +20,6 @@ public class WicketApplication extends WebApplication {
 	public void init() {
 		super.init();
 
-		/** New Pages (my own CSS and JavaScript) **/
 		mountPage("/LedgerInfo", ViewLedgerInfoPage.class);
 		mountPage("/CalendarPage", CalendarPage.class);
 	}
