@@ -58,8 +58,8 @@ public class StaticBillDateHelper {
 	 * @return {@code HashMap<MonthlyBill, HashMap<Month, List<LocalDate>>>}
 	 */
 	private static HashMap<Bill, HashMap<Month, List<LocalDate>>> addToHashMap(
-			final HashMap<Bill, HashMap<Month, List<LocalDate>>> p_hshmapBillToPaycheckByMonth,
-			final Bill p_oBill, final Month p_oMonth, final List<LocalDate> p_lstDates) {
+			final HashMap<Bill, HashMap<Month, List<LocalDate>>> p_hshmapBillToPaycheckByMonth, final Bill p_oBill,
+			final Month p_oMonth, final List<LocalDate> p_lstDates) {
 		if (p_hshmapBillToPaycheckByMonth.containsKey(p_oBill)) {
 			p_hshmapBillToPaycheckByMonth.get(p_oBill).put(p_oMonth, p_lstDates);
 		} else {
@@ -98,4 +98,6 @@ public class StaticBillDateHelper {
 		}
 	}
 
+	private StaticBillDateHelper() {
+	}
 }

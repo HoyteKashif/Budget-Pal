@@ -1,9 +1,5 @@
 package bxdev.budgetpal.page;
 
-import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.LinkOption;
-
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.link.Link;
@@ -19,49 +15,64 @@ public class TopNavBasePage extends WebPage {
 		VIEW_LEDGER_INFO, CALENDAR;
 	}
 
-	public TopNavBasePage(final MenuItemEnum p_eMenuItem) {
-		final Link<Void> lnkLedger = new Link<Void>("lnkLedger") {
+	private final MenuItemEnum eSelected;
+	private Link<Void> calendar;
+	private Link<Void> ledger;
 
-			/** Serial UID */
-			private static final long serialVersionUID = -5561276931527814384L;
+	public TopNavBasePage(final MenuItemEnum p_eSelected) {
+		this.eSelected = p_eSelected;
+	}
 
-			@Override
-			public void onClick() {
+	@Override
+	public void onInitialize() {
+		super.onInitialize();
 
-				System.out
-						.println(
-								"Context Path: "
-										+ Files.exists(
-												new File(WicketApplication.get().getServletContext().getContextPath()
-														+ "/resources/css/main.css").toPath(),
-												LinkOption.NOFOLLOW_LINKS));
-				System.out.println(
-						"Servlet Context Name: " + WicketApplication.get().getServletContext().getServletContextName());
-
-				setResponsePage(ViewLedgerInfoPage.class);
-			}
-		};
-		lnkLedger.setOutputMarkupId(true);
-
-		final Link<Void> lnkCalendar = new Link<Void>("lnkCalendar") {
-
+		add(calendar = new Link<Void>("lnkCalendar") {
 			/** Serial UID */
 			private static final long serialVersionUID = 3086892745017285227L;
+
+			@Override
+			public void onConfigure() {
+				super.onConfigure();
+				setOutputMarkupId(true);
+			}
 
 			@Override
 			public void onClick() {
 				setResponsePage(CalendarPage.class);
 			}
-		};
-		lnkCalendar.setOutputMarkupId(true);
+		});
 
-		add(lnkLedger, lnkCalendar);
+		add(ledger = new Link<Void>("lnkLedger") {
 
-		if (MenuItemEnum.CALENDAR.equals(p_eMenuItem)) {
-			addJsModifier(lnkCalendar);
-		}
-		if (MenuItemEnum.VIEW_LEDGER_INFO.equals(p_eMenuItem)) {
-			addJsModifier(lnkLedger);
+			/** Serial UID */
+			private static final long serialVersionUID = -5561276931527814384L;
+
+			@Override
+			public void onConfigure() {
+				super.onConfigure();
+				setOutputMarkupId(true);
+			}
+
+			@Override
+			public void onClick() {
+				setResponsePage(ViewLedgerInfoPage.class);
+			}
+		});
+
+		setActiveItem();
+	}
+
+	private void setActiveItem() {
+		switch (eSelected) {
+		case CALENDAR:
+			addJsModifier(calendar);
+			break;
+		case VIEW_LEDGER_INFO:
+			addJsModifier(ledger);
+			break;
+		default:
+			throw new IllegalArgumentException("Unknown Menu Selection.");
 		}
 	}
 

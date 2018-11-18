@@ -10,8 +10,8 @@ import java.util.Objects;
 
 import bxdev.budgetpal.bill.data.model.Bill;
 
-public class StaticMonthlyBillsHelper {
-	
+public final class StaticMonthlyBillsHelper {
+
 	/**
 	 * Get bill due date in the current month
 	 * 
@@ -20,7 +20,7 @@ public class StaticMonthlyBillsHelper {
 	 */
 	public static LocalDate getCurrentDueDate(final Bill p_oBill) {
 		Objects.requireNonNull(p_oBill);
-		
+
 		return LocalDate.of(LocalDate.now().getYear(), LocalDate.now().getMonth(), p_oBill.getDueDate());
 	}
 
@@ -71,54 +71,46 @@ public class StaticMonthlyBillsHelper {
 				lstOfDueDates.add(getDateInFuture(p_oMonth, p_oBill.getDueDate(), iCounter));
 			}
 		}
-		
+
 		return lstOfDueDates;
 	}
-	
-	public static Year getCurrentYear()
-	{
+
+	public static Year getCurrentYear() {
 		return Year.of(LocalDate.now().getYear());
 	}
-	
-	public static Year getYear(final int p_iYearAdjustment)
-	{
+
+	public static Year getYear(final int p_iYearAdjustment) {
 		return getCurrentYear().plusYears(p_iYearAdjustment);
 	}
-	
-	private static LocalDate getDueDateByMonth(final Month p_oMonth, final Bill p_oBill)
-	{
+
+	private static LocalDate getDueDateByMonth(final Month p_oMonth, final Bill p_oBill) {
 		return LocalDate.of(LocalDate.now().getYear(), p_oMonth, p_oBill.getDueDate());
 	}
-	
-	public static boolean isNotPassedCurrentDate(final Bill p_oBill, final Month p_oMonth)
-	{
+
+	public static boolean isNotPassedCurrentDate(final Bill p_oBill, final Month p_oMonth) {
 		return !isPassedCurrentDate(p_oBill, p_oMonth);
 	}
-	
-	public static boolean isPassedCurrentDate(final Bill p_oBill, final Month p_oMonth)
-	{
+
+	public static boolean isPassedCurrentDate(final Bill p_oBill, final Month p_oMonth) {
 		return isPassedCurrentDate(getDueDateByMonth(p_oMonth, p_oBill));
 	}
-	
-	private static boolean isPassedCurrentDate(final LocalDate p_Date)
-	{
-		return Objects.requireNonNull(p_Date).isAfter(LocalDate.now()); 
+
+	private static boolean isPassedCurrentDate(final LocalDate p_Date) {
+		return Objects.requireNonNull(p_Date).isAfter(LocalDate.now());
 	}
-	
-	
-	private static LocalDate getDateInFuture(final Month p_oMonth, final int p_iDayOfMonth, final int p_iMonthsInFuture)
-	{
+
+	private static LocalDate getDateInFuture(final Month p_oMonth, final int p_iDayOfMonth,
+			final int p_iMonthsInFuture) {
 		return getDateInCurrentYear(p_oMonth, p_iDayOfMonth).plusMonths(p_iMonthsInFuture);
 	}
-	
-	private static LocalDate getDateInCurrentYear(final Month p_oMonth, final int p_iDayOfMonth)
-	{
+
+	private static LocalDate getDateInCurrentYear(final Month p_oMonth, final int p_iDayOfMonth) {
 		return LocalDate.of(LocalDate.now().getYear(), p_oMonth, p_iDayOfMonth);
 	}
 
 	/**
 	 * Empty Default Constructor
 	 */
-	public StaticMonthlyBillsHelper() {
+	private StaticMonthlyBillsHelper() {
 	}
 }

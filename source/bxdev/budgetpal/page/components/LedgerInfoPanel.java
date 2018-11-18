@@ -46,8 +46,6 @@ public class LedgerInfoPanel extends Panel {
 					 */
 					@Override
 					public void onClick() {
-						final Ledger modelObject = item.getModelObject();
-
 						addStateChange();
 
 						item.modelChanging();
@@ -59,7 +57,7 @@ public class LedgerInfoPanel extends Panel {
 						removeAll();
 
 						// delete it from the backing database
-						LedgerDB.delete(modelObject);
+						LedgerDB.delete(item.getModelObject());
 					}
 				};
 			}
