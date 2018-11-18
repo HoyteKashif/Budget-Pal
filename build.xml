@@ -8,7 +8,6 @@
 	<property name="lib.dir" value="lib" />
 	<property name="build.dir" value="WebContent" />
 	<property name="build.main.classes" value="${build.dir}/classes" />
-	<property name="tomee.webapp.dir" value="/home/wiz/apache-tomee-plus-7.0.3/webapps/" />
 	<property environment="env"/>
 	<property name="tomee.deploy.dir" value="${env.CATALINA_HOME}/webapps"/>
 	
