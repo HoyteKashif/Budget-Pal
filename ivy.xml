@@ -1,8 +1,15 @@
-<ivy-module version="2.0">
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ivy-module version="2.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+
 	<info organisation="org.apache" module="PocketAssistApplication" />
+
 	<configurations>
 		<conf name="compile" visibility="public" />
 	</configurations>
+
 	<dependencies>
 		<dependency org="org.apache.commons" name="commons-collections4"
 			rev="4.1" conf="compile->default" />
@@ -35,4 +42,5 @@
 		<dependency org="org.jsoup" name="jsoup" rev="1.8.3"
 			conf="compile->default" />
 	</dependencies>
+
 </ivy-module>
