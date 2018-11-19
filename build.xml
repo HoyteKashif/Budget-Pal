@@ -60,7 +60,7 @@
 		<fail message="TomEE deploy directory has not been set.">
 			<condition>
 				<not>
-					<isset property="tomee.deploy.dir"/>
+					<isset property="env.CATALINA_HOME"/>
 				</not>
 			</condition>
 		</fail>
